@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->varchar('name');
+            $table->varchar('user_id');
+            $table->varchar('article_id');
+            $table->varchar('comment');
         });
     }
 
