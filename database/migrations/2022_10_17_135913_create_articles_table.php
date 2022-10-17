@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('title');
             $table->text('author');
             $table->text('body_text');
+            $table->int('category_id');
             $table->string('article_image');
-            $table->timestamp('failed_at')->useCurrent();
         });
     }
 
