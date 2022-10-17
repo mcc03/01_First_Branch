@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->varchar('user_id');
-            $table->varchar('article_id');
-            $table->varchar('comment');
+            $table->text('user_id');
+            $table->text('article_id');
+            $table->text('comment');
         });
     }
 

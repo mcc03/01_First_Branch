@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->varchar('author_fname');
-            $table->varchar('author_lname');
-            $table->varchar('author_link');
+            $table->text('author_fname');
+            $table->text('author_lname');
+            $table->text('author_link');
         });
     }
 
