@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->text('title');
-            $table->text('author');
-            $table->text('body_text');
-            $table->string('article_image');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->text('name');
         });
     }
 
