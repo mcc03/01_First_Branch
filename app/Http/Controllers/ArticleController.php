@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
     public function index() {
-        // return view('welcome');
+        return view('welcome');
 
         // $articles = Article::all();
         // dd($articles);
@@ -19,9 +19,9 @@ class ArticleController extends Controller
         // }
 
         // inserts data into DB
-        $article = new Article();
-        $article->title = "New title";
-        $article->author= "New author";
-        $article->save();
+        // $article = new Article();
+        // $article->title = "New title";
+        // $article->author= "New author";
+        // $article->save();
     }  
 }

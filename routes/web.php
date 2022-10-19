@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//returns page view
-
-Route::get('/', [ArticleController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/home', function () {
-    return view('home', ['name' => "Marlon"]);
+    return view('home');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/about', function () {
-    return view('about');
-});
+require __DIR__.'/auth.php';
