@@ -18,6 +18,7 @@ class ArticleController extends Controller
         //     echo $article->title. "<br>";
         // }
 
+        // inserts data into DB
         $article = new Article();
         $article->title = "New title";
         $article->author= "New author";
