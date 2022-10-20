@@ -30,7 +30,7 @@
                 </div>
             @endif
             <h1 class="text-5xl">
-                Articles
+               Bouldering Articles
             </h1>
         </div>
     </body>
