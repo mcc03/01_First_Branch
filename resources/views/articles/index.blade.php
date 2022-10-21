@@ -7,6 +7,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <a href="{{ route('articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
            @forelse ($articles as $article)
            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <h2 class="font-bold text-2xl"> {{ $article->title }}</h2>
