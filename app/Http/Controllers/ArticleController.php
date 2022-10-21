@@ -7,7 +7,8 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-namespace App\Http\Controllers;
+
+
 
 class ArticleController extends Controller
 {
@@ -18,8 +19,16 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        // page selection
+        // $articles = Article::paginate(10);
         // returns info from articles table
-        $articles = Article::where('id', Auth::id())->get();
+
+        //shows all notes
+        $articles = Article::all();
+
+        // shows all notes from one user
+        // $articles = Article::where('id', Auth::id())->paginate(5);
+        // dd($articles);
         return view('articles.index')->with('articles', $articles);
     }
 
@@ -30,7 +39,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**

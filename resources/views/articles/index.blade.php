@@ -7,14 +7,22 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-           @foreach ($articles as $article)
-           <<div>
-                <h2> {{ $article->$title }}</h2>
-                <p>
-                    {{ $article->$body_text }}
+
+            <a href="{{ route('articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
+           @forelse ($articles as $article)
+           <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <h2 class="font-bold text-2xl"> {{ $article->title }}</h2>
+
+                <p class="mt-2">
+                   <strong>Author: {{ $article->author }} <br></strong> 
+                   <strong>Category: {{ $article->category_id }} <br></strong> 
+                    {{ Str::limit($article->body_text, 200) }}
                 </p>
            </div>
-
+           @empty
+           <p>You have no articles yet.</p>
+           @endforelse
+           {{-- {{$articles->links()}} --}}
         </div>
     </div>
 </x-app-layout>
