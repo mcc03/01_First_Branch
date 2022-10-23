@@ -11,7 +11,9 @@
             <a href="{{ route('articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
            @forelse ($articles as $article)
            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <h2 class="font-bold text-2xl"> {{ $article->title }}</h2>
+                <h2 class="font-bold text-2xl"> 
+                    <a href="{{ route('articles.show', $article->id) }}">  {{ $article->title }}</a>
+                </h2>
 
                 <p class="mt-2">
                    <strong>Author: {{ $article->author }} <br></strong> 
