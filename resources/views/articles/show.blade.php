@@ -9,15 +9,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-            <h2 class="font-bold text-2xl"> 
-                {{ $article->title }}
+            <h2 class="font-bold text-4xl"> 
+                {{ $articles->title }}
             </h2>
 
-            <p class="mt-2">
-                <strong>Author: {{ $article->author }} <br></strong> 
-                <strong>Category: {{ $article->category_id }} <br></strong> 
-                {{ $article->body_text}}++
+            <p class="mt-6">
+                <strong>Author: {{ $articles->author }} <br></strong> 
+                <strong>Category: {{ $articles->category_id }} <br></strong> 
             </p>
+
+            <p class="mt-6 whitespace-pre-wrap">{{ $articles->body_text}}</p>
         </div>
     </div>
 </x-app-layout>
