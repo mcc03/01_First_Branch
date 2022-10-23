@@ -76,7 +76,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::where('id', $id)->Where('id', Auth::id())->firstOrFail();
+        return view('articles.show')->with('articles', $article);
     }
 
     /**
