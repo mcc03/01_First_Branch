@@ -50,7 +50,22 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+           'title' => 'required|max:120',
+           'author' => 'required',
+           'category' => 'required',
+           'text_body' => 'required'
+        ]);
+
+        // saves data input from forum to db
+        Article::create([
+            'id' => Auth::id(),
+            'title' => $request->title,
+            'author' => $request->author,
+            'category' => $request->category,
+            'text' => $request->text_body
+        ]);
+        return to_route('articles.index');
     }
 
     /**
@@ -61,7 +76,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::where('id', $id)->Where('id', Auth::id())->firstOrFail();
+        return view('articles.show')->with('articles', $article);
     }
 
     /**
