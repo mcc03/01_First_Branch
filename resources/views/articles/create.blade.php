@@ -10,44 +10,48 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form action="{{ route('articles.store') }}" method="post">
                     @csrf
-                    <input type="text" name="image" placeholder="Drop Image Here" class="w-full" autocomplete="off"> <br>  
+                    <x-text-input type="text" 
+                    name="image" 
+                    placeholder="Drop Image Here" 
+                    class="w-full" 
+                    autocomplete="off"></x-text-input>
                     
-                    <input type="text"
+                    <x-text-input type="text"
                     name="title" 
                     placeholder="Title" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('title')"> <br>
+                    :value="@old('title')"></x-text-input> 
                     @error('title')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <input type="text" 
+                    <x-text-input type="text" 
                     name="author" 
                     placeholder="Author" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('author')"> <br>
+                    :value="@old('author')"></x-text-input> 
                     @error('author')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <input type="text" 
+                    <x-text-input type="text" 
                     name="category" 
                     placeholder="Category" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('category')"> <br>
+                    :value="@old('category')"></x-text-input> 
                     @error('category')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <x-textarea name="text" 
+                    <x-textarea name="body_text" 
                     rows="10" 
                     placeholder="Start typing here..." 
                     class="w-full" 
                     autocomplete="off">
-                    :value="@old('text')"</x-textarea> <br>
+                    :value="@old('text')"</x-textarea> 
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror

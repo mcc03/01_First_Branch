@@ -10,15 +10,15 @@
 
            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
             <h2 class="font-bold text-4xl"> 
-                {{ $articles->title }}
+                {{ $article->title }}
             </h2>
 
             <p class="mt-6">
-                <strong>Author: {{ $articles->author }} <br></strong> 
-                <strong>Category: {{ $articles->category_id }} <br></strong> 
+                <strong>Author: {{ $article->author }} <br></strong> 
+                <strong>Category: {{ $article->category_id }} <br></strong> 
             </p>
 
-            <p class="mt-6 whitespace-pre-wrap">{{ $articles->body_text}}</p>
+            <p class="mt-6 whitespace-pre-wrap">{{ $article->body_text}}</p>
         </div>
     </div>
 </x-app-layout>

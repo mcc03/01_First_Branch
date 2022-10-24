@@ -48,22 +48,24 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate([
-           'title' => 'required|max:120',
+           'title' => 'required|max:50',
            'author' => 'required',
            'category' => 'required',
-           'text_body' => 'required'
+           'body_text' => 'required|max:500'
         ]);
 
         // saves data input from forum to db
         Article::create([
-            'id' => Auth::id(),
+            // 'id' => Auth::id(),
             'title' => $request->title,
             'author' => $request->author,
-            'category' => $request->category,
-            'text' => $request->text_body
+            'category_id' => $request->category,
+            'body_text' => $request->body_text, 
+            // 'updated_at' => now()
         ]);
         return to_route('articles.index');
     }
@@ -74,10 +76,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::where('id', $id)->Where('id', Auth::id())->firstOrFail();
-        return view('articles.show')->with('articles', $article);
+        //$article = Article::where('id', $id);
+        return view('articles.show')->with('article', $article);
     }
 
     /**
