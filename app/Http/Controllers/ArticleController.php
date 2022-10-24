@@ -88,9 +88,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit(Article $article)
     {
-        //
+        return view('articles.edit')->with('article', $article);
     }
 
     /**
@@ -100,9 +101,23 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:50',
+            'author' => 'required',
+            'category' => 'required',
+            'body_text' => 'required|max:500'
+        ]);
+
+        $article->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'category_id' => $request->category,
+            'body_text' => $request->body_text, 
+        ]);
+
+        return to_route('articles.show', $article)->with('success', 'Article updated successfully');
     }
 
     /**

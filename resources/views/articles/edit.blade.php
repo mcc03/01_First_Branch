@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Articles') }}
+            {{ __('Edit Article') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('articles.store') }}" method="post">
+                <form action="{{ route('articles.update', $article) }}" method="post">
+                    @method('put')
                     @csrf
                     <x-text-input type="text" 
                     name="image" 
@@ -21,7 +22,7 @@
                     placeholder="Title" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('title')"></x-text-input> 
+                    :value="@old('title', $article->title)"></x-text-input> 
                     @error('title')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
@@ -31,7 +32,7 @@
                     placeholder="Author" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('author')"></x-text-input> 
+                    :value="@old('author', $article->author)"></x-text-input> 
                     @error('author')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
@@ -41,7 +42,7 @@
                     placeholder="Category" 
                     class="w-full" 
                     autocomplete="off"
-                    :value="@old('category')"></x-text-input> 
+                    :value="@old('category', $article->category_id)"></x-text-input> 
                     @error('category')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
@@ -52,12 +53,12 @@
                     placeholder="Start typing here..." 
                     class="w-full" 
                     autocomplete="off">
-                    :value="@old('text')"</x-textarea> 
+                    :value="@old('body_text', $article->body_text)"</x-textarea> 
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <button type="submit">Save Article</button>
+                    <button type="submit">Save Changes</button>
                 </form>
          
         </div>
