@@ -115,10 +115,17 @@ class ArticleController extends Controller
             'title' => 'required|max:50',
             'author' => 'required',
             'category' => 'required',
-            'body_text' => 'required|max:500'
+            'body_text' => 'required|max:500',
+            'article_image' => 'file|image'
         ]);
 
+        $article_image = $request->file('article_image');
+        $extension = $article_image->getClientOriginalExtension();
+        //unique filename
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.'. $extension;
+
         $article->update([
+            'article_image' => $filename,
             'title' => $request->title,
             'author' => $request->author,
             'category_id' => $request->category,
