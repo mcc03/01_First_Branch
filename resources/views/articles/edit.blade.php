@@ -11,11 +11,11 @@
                 <form action="{{ route('articles.update', $article) }}" method="post">
                     @method('put')
                     @csrf
-                    <x-text-input type="text" 
-                    name="image" 
-                    placeholder="Drop Image Here" 
-                    class="w-full" 
-                    autocomplete="off"></x-text-input>
+                    <x-text-input type="file" 
+                    name="article_image" 
+                    placeholder="Article Cover" 
+                    class="w-full mt-6" 
+                    filed="article_image"></x-text-input>
                     
                     <x-text-input type="text"
                     name="title" 

@@ -8,13 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('articles.store') }}" method="post">
+                <form action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <x-text-input type="text" 
-                    name="image" 
-                    placeholder="Drop Image Here" 
-                    class="w-full" 
-                    autocomplete="off"></x-text-input>
+                    <x-text-input type="file" 
+                    name="article_image" 
+                    placeholder="Article Cover" 
+                    class="w-full mt-6" 
+                    filed="article_image"></x-text-input>
                     
                     <x-text-input type="text"
                     name="title" 
