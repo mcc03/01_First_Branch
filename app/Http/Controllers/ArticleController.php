@@ -123,6 +123,8 @@ class ArticleController extends Controller
         $extension = $article_image->getClientOriginalExtension();
         //unique filename
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.'. $extension;
+        // stores the file in /pubic/images, and names it $filename
+        $path = $article_image->storeAs('public/images', $filename);
 
         $article->update([
             'article_image' => $filename,

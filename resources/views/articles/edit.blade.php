@@ -8,16 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('articles.update', $article) }}" method="post">
+                <form action="{{ route('articles.update', $article) }}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
-                    <x-text-input type="file" 
+                    <x-text-input 
+                    type="file" 
                     name="article_image" 
                     placeholder="Article Cover" 
                     class="w-full mt-6" 
                     filed="article_image"></x-text-input>
                     
-                    <x-text-input type="text"
+                    <x-text-input 
+                    type="text"
                     name="title" 
                     placeholder="Title" 
                     class="w-full" 
@@ -27,7 +29,8 @@
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <x-text-input type="text" 
+                    <x-text-input 
+                    type="text" 
                     name="author" 
                     placeholder="Author" 
                     class="w-full" 
@@ -37,7 +40,8 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <x-text-input type="text" 
+                    <x-text-input 
+                    type="text" 
                     name="category" 
                     placeholder="Category" 
                     class="w-full" 
@@ -47,20 +51,20 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    <x-textarea type="text"
+                    <x-textarea 
+                    type="text"
                     name="body_text" 
                     rows="10" 
                     placeholder="Start typing here..." 
                     class="w-full" 
-                    autocomplete="off">
-                    :value="@old('body_text', $article->body_text)"</x-textarea> 
+                    autocomplete="off"
+                    :value="@old('body_text', $article)"></x-textarea> 
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
                     <button type="submit">Save Changes</button>
                 </form>
-         
         </div>
     </div>
 </x-app-layout>
