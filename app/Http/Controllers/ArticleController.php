@@ -51,6 +51,7 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        // before storing, the values below are checked
         $request->validate([
            'title' => 'required|max:50',
            'author' => 'required',
@@ -60,6 +61,7 @@ class ArticleController extends Controller
         ]);
 
        $article_image = $request->file('article_image');
+        // getClientOriginalExtension() method returns the original file extension
         $extension = $article_image->getClientOriginalExtension();
         //this makes the image filename unique
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
@@ -75,6 +77,8 @@ class ArticleController extends Controller
             'body_text' => $request->body_text, 
             // 'updated_at' => now()
         ]);
+        
+        // when you create the article, it redirects you back to the index. There you will see the newly made article
         return to_route('articles.index');
     }
 
@@ -111,6 +115,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // before storing, the values below are checked
         $request->validate([
             'title' => 'required|max:50',
             'author' => 'required',
@@ -126,6 +131,7 @@ class ArticleController extends Controller
         // stores the file in /pubic/images, and names it $filename
         $path = $article_image->storeAs('public/images', $filename);
 
+        // specified fields that are to update when submitting forum
         $article->update([
             'article_image' => $filename,
             'title' => $request->title,
@@ -134,6 +140,7 @@ class ArticleController extends Controller
             'body_text' => $request->body_text, 
         ]);
 
+        // after updating the article it returns to the original view of the article
         return to_route('articles.show', $article)->with('success', 'Article updated successfully');
     }
 

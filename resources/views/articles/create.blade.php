@@ -10,22 +10,29 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+
+                    {{-- these are all the fields that will be shown on the create page --}}
+
+                    {{-- choose image field --}}
                     <x-text-input type="file" 
                     name="article_image" 
                     placeholder="Article Cover" 
                     class="w-full mt-6" 
                     filed="article_image"></x-text-input>
                     
+                    {{-- article title field --}}
                     <x-text-input type="text"
                     name="title" 
                     placeholder="Title" 
                     class="w-full" 
                     autocomplete="off"
+                    {{-- "@old" remembers the values in the relative fields --}}
                     :value="@old('title')"></x-text-input> 
                     @error('title')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
+                    {{-- article author field --}}
                     <x-text-input type="text" 
                     name="author" 
                     placeholder="Author" 
@@ -36,6 +43,7 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
+                    {{-- article category field --}}
                     <x-text-input type="text" 
                     name="category" 
                     placeholder="Category" 
@@ -46,6 +54,7 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
+                    {{-- article body text field --}}
                     <x-textarea type="text"
                     name="body_text" 
                     rows="10" 

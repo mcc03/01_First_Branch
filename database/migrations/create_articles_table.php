@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // creates the article table along with the appropriate columns
+        // one user can have many articles
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();

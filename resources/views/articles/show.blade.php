@@ -20,7 +20,8 @@
             </div>
            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
 
-            <h2 class="font-bold text-4xl"> 
+            <h2 class="font-bold text-4xl">
+                {{-- displaying article title --}}
                 {{ $article->title }}
             </h2>
 
@@ -30,6 +31,7 @@
             </td>
 
             <p class="mt-6">
+                {{-- displaying article information --}}
                 <strong>Author: {{ $article->author }} <br></strong> 
                 <strong>Category: {{ $article->category_id }} <br></strong> 
             </p>

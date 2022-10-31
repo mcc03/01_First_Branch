@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        // creates the comments table along with the appropriate columns, this would be for a many to many relationship
+        // many users can comment on many articles
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();

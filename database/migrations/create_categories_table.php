@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        // creates the categories table along with the appropriate columns
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
