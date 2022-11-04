@@ -24,7 +24,10 @@ class ArticleController extends Controller
         // returns info from articles table
 
         //shows all notes
-        $articles = Article::all();
+        // $articles = Article::all();
+
+        // limits number of articles shown per page to specified number
+        $articles = Article::paginate(5);
 
         // shows all notes from one user
         // $articles = Article::where('id', Auth::id())->paginate(5);

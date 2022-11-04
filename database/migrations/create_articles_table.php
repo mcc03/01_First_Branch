@@ -17,7 +17,7 @@ return new class extends Migration
         // one user can have many articles
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid')->nullable();
             $table->text('title');
             $table->text('author');
             $table->text('body_text');
