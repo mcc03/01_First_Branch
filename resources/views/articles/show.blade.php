@@ -27,7 +27,7 @@
 
             <td rowspan="6">
                 <!-- use the asset function, access the file $article->article_image in the folder storage/images -->
-                <img src="{{asset('storage/images/' . $article->article_image) }}" width="150" />
+                <img src="{{asset('storage/images/' . $article->article_image) }}" width="500" />
             </td>
 
             <p class="mt-6">

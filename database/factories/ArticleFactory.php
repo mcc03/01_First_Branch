@@ -22,7 +22,8 @@ class ArticleFactory extends Factory
             // this puts in fake data into the database
             // randomElement picks a random suffix in the array to add onto the 'Bouldering' prefix
             'title' => 'Bouldering '.$this ->faker->randomElement(['Finals', 'Cup', 'Gym', 'Competition', 'Training', 'Accident', 'For Noobs', 'Tips!', "... Is It Safe?"]),
-            'article_image' => '2022-10-28-084020_New Gym!.jpg',
+            // selects random image in the array
+            'article_image' => $this ->faker->randomElement (['2022-10-28-084020_New Gym!.jpg', 'Bouldering_IFCS.jpg', 'womans_cup.jpg', 'bouldering_1.PNG', 'bouldering_2.jpeg', 'bouldering_3.jpg', 'bouldering_4.jpg', 'bouldering_5.jpg']),
             'author' => $this->faker->name,
             'category_id' => $this->faker->randomDigit(1, 10),
             'body_text' => $this->faker->text(500, 600)
