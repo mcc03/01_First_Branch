@@ -26,7 +26,8 @@ class ArticleFactory extends Factory
             'article_image' => $this ->faker->randomElement (['2022-10-28-084020_New Gym!.jpg', 'Bouldering_IFCS.jpg', 'womans_cup.jpg', 'bouldering_1.PNG', 'bouldering_2.jpeg', 'bouldering_3.jpg', 'bouldering_4.jpg', 'bouldering_5.jpg']),
             'author' => $this->faker->name,
             'category_id' => $this->faker->randomDigit(1, 10),
-            'body_text' => $this->faker->text(500, 600)
+            // can't figure out how to insert paragraphs into the seeder using faker
+            'body_text' => $this->faker->paragraph($nbSentences = 20, $variableNbSentences = true)
         ];
     }
 }
