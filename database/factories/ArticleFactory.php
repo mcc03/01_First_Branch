@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
             'title' => 'Bouldering '.$this ->faker->randomElement(['Finals', 'Cup', 'Gym', 'Competition', 'Training', 'Accident', 'For Noobs', 'Tips!', "... Is It Safe?"]),
             'article_image' => '2022-10-28-084020_New Gym!.jpg',
             'author' => $this->faker->name,
-            'category_id' => $this->faker->randomDigit(1),
+            'category_id' => $this->faker->randomDigit(1, 10),
             'body_text' => $this->faker->text(500, 600)
         ];
     }
