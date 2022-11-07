@@ -9,6 +9,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    // the guarded array is left empty for mass assignment protection
     protected $guarded = [];
+    // removes timestamps
     public $timestamps = false;
 }

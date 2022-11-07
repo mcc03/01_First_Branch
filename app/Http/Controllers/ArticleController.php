@@ -157,7 +157,8 @@ class ArticleController extends Controller
     {
         $article->delete();
 
-        return to_route('articles.index');
+        // confirmation message will popup when returning to index after successfully deleting article
+        return to_route('articles.index')->with('success', 'Note deleted successfully');
     }
 }
 

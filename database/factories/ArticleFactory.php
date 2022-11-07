@@ -19,11 +19,11 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            // this puts in fake data into the database
+            // I use faker to input sample data into the database
             // randomElement picks a random suffix in the array to add onto the 'Bouldering' prefix
             'title' => 'Bouldering '.$this ->faker->randomElement(['Finals', 'Cup', 'Gym', 'Competition', 'Training', 'Accident', 'For Noobs', 'Tips!', "... Is It Safe?"]),
             // selects random image in the array
-            'article_image' => $this ->faker->randomElement (['2022-10-28-084020_New Gym!.jpg', 'Bouldering_IFCS.jpg', 'womans_cup.jpg', 'bouldering_1.PNG', 'bouldering_2.jpeg', 'bouldering_3.jpg', 'bouldering_4.jpg', 'bouldering_5.jpg']),
+            'article_image' => $this ->faker->randomElement (['womans_cup.jpg', 'bouldering_3.jpg', 'bouldering_4.jpg', 'bouldering_5.jpg', 'Bouldering_Equipment.jpg']),
             'author' => $this->faker->name,
             'category_id' => $this->faker->randomDigit(1, 10),
             // can't figure out how to insert paragraphs into the seeder using faker

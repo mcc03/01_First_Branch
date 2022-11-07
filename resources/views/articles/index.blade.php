@@ -1,12 +1,22 @@
 <x-app-layout>
+    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{-- page heading --}}
             {{ __('Articles') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                {{-- if the article is deleted succesfully, a confirmation will pop up --}}
+                @if(session('success'))
+                <div class="mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-mb">
+                {{ session('success') }}
+                @endif
+            </div>
+
             {{-- button link to create article page --}}
             <a href="{{ route('articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
            
@@ -33,8 +43,10 @@
                 </p>
            </div>
            @empty
+           {{-- will be displayed if you have no articles to be shown --}}
            <p>You have no articles yet.</p>
            @endforelse
+           {{-- these are the links for the pagination --}}
            {{$articles->links()}}
         </div>
     </div>
