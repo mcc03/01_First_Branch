@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 {{-- calls the store function, enctype encodes the data before being submitted to --}}
-                <form action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.articles.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     {{-- these are all the fields that will be shown on the create page --}}

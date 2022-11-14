@@ -18,7 +18,7 @@
             </div>
 
             {{-- button link to create article page --}}
-            <a href="{{ route('articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
+            <a href="{{ route('admin.articles.create') }}" class="btn-link btn-lg mb-2">+ New Article</a>
            
             {{-- for each article it will loop through and display the information specified in this loop --}}
             @forelse ($articles as $article)
@@ -27,7 +27,7 @@
 
                 <h2 class="font-bold text-2xl"> 
                     {{-- hovering over article title will show it's ID and can click to view that specific article --}}
-                    <a href="{{ route('articles.show', $article) }}">  {{ $article->title }}</a>
+                    <a href="{{ route('admin.articles.show', $article) }}">  {{ $article->title }}</a>
                 </h2>
 
                 <td rowspan="6">

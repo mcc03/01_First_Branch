@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-
+use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,13 +26,16 @@ class ArticleController extends Controller
         //shows all notes
         // $articles = Article::all();
 
+
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         // limits number of articles shown per page to specified number
         $articles = Article::paginate(5);
 
         // shows all notes from one user
         // $articles = Article::where('id', Auth::id())->paginate(5);
         // dd($articles);
-        return view('articles.index')->with('articles', $articles);
+        return view('admin.articles.index')->with('articles', $articles);
     }
 
     /**
@@ -42,7 +45,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        return view('admin.articles.create');
     }
 
     /**
@@ -54,6 +59,9 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         // before storing, the values below are checked
         $request->validate([
            'title' => 'required|max:50',
@@ -82,7 +90,7 @@ class ArticleController extends Controller
         ]);
         
         // when you create the article, it redirects you back to the index. There you will see the newly made article
-        return to_route('articles.index');
+        return to_route('admin.articles.index');
     }
 
     /**
@@ -93,8 +101,11 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         //$article = Article::where('id', $id);
-        return view('articles.show')->with('article', $article);
+        return view('admin.articles.show')->with('article', $article);
     }
 
     /**
@@ -106,7 +117,10 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        return view('articles.edit')->with('article', $article);
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        
+        return view('admin.articles.edit')->with('article', $article);
     }
 
     /**
@@ -118,6 +132,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
         // before storing, the values below are checked
         $request->validate([
             'title' => 'required|max:50',
@@ -144,7 +161,7 @@ class ArticleController extends Controller
         ]);
 
         // after updating the article it returns to the original view of the article
-        return to_route('articles.show', $article)->with('success', 'Article updated successfully');
+        return to_route('admin.articles.show', $article)->with('success', 'Article updated successfully');
     }
 
     /**
@@ -155,10 +172,13 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        
         $article->delete();
 
         // confirmation message will popup when returning to index after successfully deleting article
-        return to_route('articles.index')->with('success', 'Note deleted successfully');
+        return to_route('admin.articles.index')->with('success', 'Note deleted successfully');
     }
 }
 

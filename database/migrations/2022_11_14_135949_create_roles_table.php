@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        // creates the author table along with the appropriate columns
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('author_fname');
-            $table->text('author_lname');
-            $table->text('author_link');
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('roles');
     }
 };
