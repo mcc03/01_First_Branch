@@ -41,7 +41,7 @@
             <p class="mt-6"></p>
                 {{-- displaying article information --}}
                 <strong>Author: {{ $article->author }} <br></strong> 
-                <strong>Category: {{ $article->category_id }} <br></strong> 
+                <strong>Category: {{ $article->category->name }} <br></strong> 
             </p>
 
             {{-- displaying article information --}}

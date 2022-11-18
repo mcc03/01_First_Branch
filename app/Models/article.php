@@ -13,4 +13,11 @@ class Article extends Model
     protected $guarded = [];
     // removes timestamps
     public $timestamps = false;
+    // protected $fillable - ['title', ]
+
+    public function category()
+        {
+            return $this->belongsTo(Category::class);
+        }
+    
 }

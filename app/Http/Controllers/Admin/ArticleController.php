@@ -30,13 +30,15 @@ class ArticleController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // limits number of articles shown per page to specified number
-        $articles = Article::paginate(5);
+        // $articles = Article::with('category')->get();
+        $articles = Article::with('category')->paginate(5);
 
         // shows all notes from one user
         // $articles = Article::where('id', Auth::id())->paginate(5);
         // dd($articles);
         return view('admin.articles.index')->with('articles', $articles);
     }
+
 
     /**
      * Show the form for creating a new resource.

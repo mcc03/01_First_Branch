@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
             // selects random image in the array
             'article_image' => $this ->faker->randomElement (['womans_cup.jpg', 'bouldering_3.jpg', 'bouldering_4.jpg', 'bouldering_5.jpg', 'Bouldering_Equipment.jpg']),
             'author' => $this->faker->name,
-            'category_id' => $this->faker->randomDigit(1, 10),
+            // 'category_id' => $this->faker->randomDigit(1, 10),
             // can't figure out how to insert paragraphs into the seeder using faker
             'body_text' => $this->faker->paragraph($nbSentences = 20, $variableNbSentences = true)
         ];
