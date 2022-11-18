@@ -1,7 +1,8 @@
 <?php
 
-use app\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use app\Http\Controllers\User\ArticleController as UserArticleController;
+use App\Http\Controllers\Admin\TestController;
 use Database\Seeders\ArticleSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +29,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('/articles', ArticleController::class)->middleware(['auth']);
+// Route::resource('/articles', ArticleController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 // creates all routes for article
 // routes will only be available if user logs in

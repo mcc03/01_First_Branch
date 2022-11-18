@@ -36,7 +36,7 @@
             @endif
             <h1 class="text-5xl">
                 {{-- can click on the title to naviagate to the article index --}}
-               <a href="{{ route('articles.index') }}">Bouldering Articles</a>
+               {{-- <a href="{{ route('articles.index') }}">Bouldering Articles</a> --}}
             </h1>
         </div>
     </body>

@@ -64,7 +64,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+            <x-responsive-nav-link :href="route('admin.articles.index')" :active="request()->routeIs('admin.articles.index')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
