@@ -46,18 +46,6 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    {{-- edit field for article category --}}
-                    <x-text-input 
-                    type="text" 
-                    name="category" 
-                    placeholder="Category" 
-                    class="w-full" 
-                    autocomplete="off"
-                    :value="@old('category', $article->category_id)"></x-text-input> 
-                    @error('category')
-                        <div class="text-red-600 text-sm">{{ $message }}</div>
-                    @enderror
-
                     {{-- edit field for article body text --}}
                     <x-textarea 
                     type="text"
@@ -70,6 +58,17 @@
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
+
+                    {{-- article category field --}}
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category_id">
+                          @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
+                              {{$category->name}}
+                            </option>
+                          @endforeach
+                     </select>
 
                     {{-- save changes button --}}
                     <button type="submit">Save Changes</button>

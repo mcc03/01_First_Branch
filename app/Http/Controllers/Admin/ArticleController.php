@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,9 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.articles.create');
+
+        $categories = Category::all();
+        return view('admin.articles.create')->with('categories', $categories);
     }
 
     /**
@@ -68,7 +71,7 @@ class ArticleController extends Controller
         $request->validate([
            'title' => 'required|max:50',
            'author' => 'required',
-           'category' => 'required',
+           'category_id' => 'required',
            'body_text' => 'required|max:500',
            'article_image' => 'file|image'
         ]);
@@ -86,7 +89,7 @@ class ArticleController extends Controller
             'article_image' => $filename,
             'title' => $request->title,
             'author' => $request->author,
-            'category_id' => $request->category,
+            'category_id' => $request->category_id,
             'body_text' => $request->body_text, 
             // 'updated_at' => now()
         ]);
@@ -141,7 +144,7 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required|max:50',
             'author' => 'required',
-            'category' => 'required',
+            'category_id' => 'required',
             'body_text' => 'required|max:500',
             'article_image' => 'file|image'
         ]);
@@ -158,7 +161,7 @@ class ArticleController extends Controller
             'article_image' => $filename,
             'title' => $request->title,
             'author' => $request->author,
-            'category_id' => $request->category,
+            'category_id' => $request->category_id,
             'body_text' => $request->body_text, 
         ]);
 

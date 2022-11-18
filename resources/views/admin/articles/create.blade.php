@@ -33,24 +33,14 @@
                     @enderror
 
                     {{-- article author field --}}
-                    <x-text-input type="text" 
+                    <x-text-input 
+                    type="text" 
                     name="author" 
                     placeholder="Author" 
                     class="w-full" 
                     autocomplete="off"
                     :value="@old('author')"></x-text-input> 
                     @error('author')
-                        <div class="text-red-600 text-sm">{{ $message }}</div>
-                    @enderror
-
-                    {{-- article category field --}}
-                    <x-text-input type="text" 
-                    name="category" 
-                    placeholder="Category" 
-                    class="w-full" 
-                    autocomplete="off"
-                    :value="@old('category')"></x-text-input> 
-                    @error('category')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
@@ -65,6 +55,17 @@
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
+
+                    {{-- article category field --}}
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category_id">
+                          @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
+                              {{$category->name}}
+                            </option>
+                          @endforeach
+                     </select>
 
                     {{-- save article button --}}
                     <button type="submit">Save Article</button>
