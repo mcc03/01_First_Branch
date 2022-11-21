@@ -59,19 +59,19 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    {{-- article category field --}}
-                    {{-- <div class="form-group">
+                    {{-- <div class="forum-group">
                         <label for="category">Category</label>
-                        <select name="category_id">
-                          @foreach ($categories as $category)
-                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
+                        <select name="name">
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{(old('name') == $category->id) ? "selected" : ""}}>
                               {{$category->name}}
                             </option>
-                          @endforeach
-                     </select> --}}
+                            @endforeach
+                        </select>
+                     </div> --}}
 
                     <x-textarea 
-                    disabled
+                    enabled
                     type="text"
                     name="category_id" 
                     rows="1" 
@@ -83,8 +83,6 @@
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
-
-                    
 
                     {{-- save changes button --}}
                     <button type="submit">Save Changes</button>
