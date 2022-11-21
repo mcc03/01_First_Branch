@@ -13,18 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
-                        {{ __('Articles') }}
+                        {{ __('Books') }}
+                    </x-nav-link>
+                <!-- Category Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('home.category.index')" :active="request()->routeIs('home.category.index')">
+                        {{ __('Categories') }}
                     </x-nav-link>
                 </div>
             </div>
-            {{-- Category Links --}}
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('home.category.index')" :active="request()->routeIs('home.category.index')">
-                    {{ __('Categories') }}
-                </x-nav-link>
-            </div>
-        </div>
-        
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -71,7 +69,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
-                {{ __('Dashboard') }}
+                {{ __('View Books') }}
             </x-responsive-nav-link>
         </div>
 
