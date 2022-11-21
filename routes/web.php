@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use app\Http\Controllers\User\ArticleController as UserArticleController;
+use App\Http\Controllers\User\ArticleController as UserArticleController;
 use App\Http\Controllers\Admin\TestController;
 use Database\Seeders\ArticleSeeder;
 use Illuminate\Support\Facades\Route;
