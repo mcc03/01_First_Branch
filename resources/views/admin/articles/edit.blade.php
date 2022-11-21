@@ -60,7 +60,7 @@
                     @enderror
 
                     {{-- article category field --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="category">Category</label>
                         <select name="category_id">
                           @foreach ($categories as $category)
@@ -68,7 +68,23 @@
                               {{$category->name}}
                             </option>
                           @endforeach
-                     </select>
+                     </select> --}}
+
+                    <x-textarea 
+                    disabled
+                    type="text"
+                    name="category_id" 
+                    rows="1" 
+                    placeholder="category" 
+                    class="w-full" 
+                    autocomplete="off"
+                    {{-- trying to add category dropdown into edit --}}
+                    :value="@old('category_id', $article)"></x-textarea> 
+                    @error('text')
+                        <div class="text-red-600 text-sm">{{ $message }}</div>
+                    @enderror
+
+                    
 
                     {{-- save changes button --}}
                     <button type="submit">Save Changes</button>
