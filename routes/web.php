@@ -38,11 +38,13 @@ require __DIR__.'/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
-// creates all routes for article
-// routes will only be available if user logs in
-Route::resource('/admin/articles', AdminArticleController::class)->middleware(['auth'])->names('admin.articles');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/home/categories', [App\Http\Controllers\HomeController::class, 'categoryIndex'])->name('home.category.index');
 
+// This will create all the routes for Article
+// routes will only be available when a user is logged in
+Route::resource('/admin/articles', AdminArticleController::class)->middleware(['auth'])->names('admin.articles');
 Route::resource('/user/articles', UserArticleController::class)->middleware(['auth'])->names('user.articles')->only(['index', 'show']);
 
 // This will create all the routes for Category functionality.
@@ -50,5 +52,5 @@ Route::resource('/user/articles', UserArticleController::class)->middleware(['au
 Route::resource('/admin/categories', AdminCategoryController::class)->middleware(['auth'])->names('admin.categories');
 
 // the ->only at the end of this statement says only create the index and show routes.
-Route::resource('/user/categories',UserCategoryController::class)->middleware(['auth'])->names('user.categories')->only(['index', 'show']);
+Route::resource('/user/categories', UserCategoryController::class)->middleware(['auth'])->names('user.categories')->only(['index', 'show']);
 
