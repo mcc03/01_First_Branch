@@ -119,7 +119,7 @@ class CategoryController extends Controller
         ]);
 
         // specified fields that are to update when submitting forum
-        $article->update([
+        $category->update([
             'name' => $request->name
         ]);
 
