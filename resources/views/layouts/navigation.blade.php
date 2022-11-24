@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
-                        {{ __('Books') }}
+                        {{ __('Articles') }}
                     </x-nav-link>
                 <!-- Category Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
