@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role', 'user_role');
     }
 
+    // many to many
+        public function articles()
+    {
+        return $this->belongsToMany(Article::class, 'comments');
+    }
 
     public function authorizeRoles($roles)
     {

@@ -19,4 +19,10 @@ class Article extends Model
         {
             return $this->belongsTo(Category::class);
         }
+
+        // many to many
+        public function users()
+        {
+            return $this->belongsToMany(User::class, 'comments');
+        }
 }

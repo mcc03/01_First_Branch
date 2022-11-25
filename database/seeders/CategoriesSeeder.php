@@ -19,7 +19,7 @@ class CategoriesSeeder extends Seeder
     {
         Category::factory()
         ->times(3)
-        ->hasArticles(4)
+       // ->hasArticles(4)
         ->create();
     }
 }

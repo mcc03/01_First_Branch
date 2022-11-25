@@ -13,14 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        // creates the comments table along with the appropriate columns, this would be for a many to many relationship
-        // many users can comment on many articles
+        // this is the linking table between articles and users
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('user_id');
-            $table->text('article_id');
-            $table->text('comment');
+            $table->text('comment')->nullable(true);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
+
+            // foreign keys
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
+
+            $table->foreign('article_id')->references('id')->on('articles')->onUpdate('cascade')->onDelete('restrict');
+            
+            $table->timestamps();
         });
     }
 

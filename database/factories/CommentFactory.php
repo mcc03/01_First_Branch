@@ -17,7 +17,10 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+        //     'comment' =>$this->faker->paragraph($nbSentences = 10, $variableNbSentences = true),
+
+        //     'user_id' =>$this->faker->randomDigit(1, 2),
+        // //    'article_id'=>$this->faker->randomDigti(1, 12) 
         ];
     }
 }
