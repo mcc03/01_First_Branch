@@ -46,6 +46,14 @@
 
             {{-- displaying article information --}}
             <p class="mt-6 whitespace-pre-wrap">{{ $article->body_text}}</p>
-        </div>
+
+            @foreach ($article->users as $user)
+            <tr>
+                <td class="font-bold ">user </td>
+                <td> {{$users->name }}</td>
+            </tr>
+            @endforeach
     </div>
+</div>
+
 </x-app-layout>

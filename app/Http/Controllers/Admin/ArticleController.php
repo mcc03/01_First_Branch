@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +33,12 @@ class ArticleController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // limits number of articles shown per page to specified number
-        // $articles = Article::with('category')->get();
-        $articles = Article::with('category')->paginate(5);
+        // $articles = Article::with('category')->paginate(5);
+
+        //gets articles associated with a user and a category
+        $articles = Article::with('users')
+        ->with('category')
+        ->get();
 
         // shows all notes from one user
         // $articles = Article::where('id', Auth::id())->paginate(5);

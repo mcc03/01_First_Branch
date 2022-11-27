@@ -47,7 +47,7 @@
            <p>You have no articles yet.</p>
            @endforelse
            {{-- these are the links for the pagination --}}
-           {{$articles->links()}}
+           {{-- {{$articles->links()}} --}}
         </div>
     </div>
 </x-app-layout>
