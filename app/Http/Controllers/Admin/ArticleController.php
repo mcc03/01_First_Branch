@@ -38,6 +38,7 @@ class ArticleController extends Controller
         //gets articles associated with a user and a category
         $articles = Article::with('users')
         ->with('category')
+        ->with('comments')
         ->get();
 
         // shows all notes from one user

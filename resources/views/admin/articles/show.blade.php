@@ -12,6 +12,7 @@
             <div class="mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-mb">
             {{ session('success') }}
             @endif
+            </div>
         </div>
       
             {{-- edit button --}}
@@ -40,17 +41,32 @@
 
             <p class="mt-6"></p>
                 {{-- displaying article information --}}
-                <strong>Author: {{ $article->author }} <br></strong> 
                 <strong>Category: {{ $article->category->name }} <br></strong> 
             </p>
 
             {{-- displaying article information --}}
             <p class="mt-6 whitespace-pre-wrap">{{ $article->body_text}}</p>
+    </div>
+    
+    <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+        <p>
+            <strong>Comment Section:</strong>
 
+        </p>
+            {{-- display the user's name and their comment --}}
             @foreach ($article->users as $user)
             <tr>
-                <td class="font-bold ">user </td>
-                <td> {{$users->name }}</td>
+                <td class="font-bold "><strong>Comment by:</strong> </td>
+                <td><strong>{{$user->name }}</strong><br></td>
+
+                {{-- <td><strong>{{$comment->comment }}</strong></td> --}}
+            </tr>
+            @endforeach
+
+
+            @foreach ($article->comments as $comment)
+            <tr>
+                <td>{{$comment->comment }}<br></td>
             </tr>
             @endforeach
     </div>
