@@ -72,4 +72,27 @@
     </div>
 </div>
 
+<div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+    <h1>Add a comment</h1>
+
+    {{-- this goes to the comment controller and to the store function --}}
+    <form action="{{ route('admin.comments.store', $article) }}" method="post" enctype="multipart/form-data">
+        @csrf
+
+        {{-- add a comment --}}
+        <x-textarea 
+        type="text"
+        name="comment" 
+        rows="10" 
+        placeholder="Start typing here..." 
+        class="w-full" 
+        autocomplete="off"
+        ></x-textarea> 
+        @error('text')
+            <div class="text-red-600 text-sm">{{ $message }}</div>
+        @enderror
+
+        {{-- save changes button --}}
+        <button type="submit">Add comment</button>
+    </form>
 </x-app-layout>

@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
 
 // Route::resource('/articles', ArticleController::class)->middleware(['auth']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
@@ -54,3 +54,4 @@ Route::resource('/admin/categories', AdminCategoryController::class)->middleware
 // the ->only at the end of this statement says only create the index and show routes.
 Route::resource('/user/categories', UserCategoryController::class)->middleware(['auth'])->names('user.categories')->only(['index', 'show']);
 
+Route::post('/admin/{article}/comment', [App\Http\Controllers\Admin\CommentController::class, 'store'])->middleware(['auth'])->name('admin.comments.store');

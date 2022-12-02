@@ -55,7 +55,7 @@
                     @error('text')
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
-
+        
                     {{-- article category field --}}
                     <div class="form-group">
                         <label for="category">Category</label>
@@ -66,6 +66,24 @@
                             </option>
                           @endforeach
                      </select>
+
+                     {{-- Select a user to attach the comment to --}}
+                     {{-- <div class="form-group">
+                        <label for="authors"> <strong> User</strong> <br> </label>
+                        @foreach ($users as $user)
+                            <input type="checkbox", value="{{$user->id}}" name="users[]">
+                           {{$user->name}}
+                        @endforeach
+                    </div> --}}
+
+                    {{-- choose a comment for the article --}}
+                     {{-- <div class="form-group">
+                        <label for="comments"> <strong> Comments</strong> <br> </label>
+                        @foreach ($comments as $comment)
+                            <input type="checkbox", value="{{$comment->id}}" name="comments[]">
+                           {{$comment->comment}}
+                        @endforeach
+                    </div> --}}
 
                     {{-- save article button --}}
                     <button type="submit">Save Article</button>

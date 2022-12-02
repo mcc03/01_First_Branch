@@ -35,11 +35,11 @@ class ArticleController extends Controller
         // limits number of articles shown per page to specified number
         // $articles = Article::with('category')->paginate(5);
 
-        //gets articles associated with a user and a category
+        //gets articles associated with a user, category and comment
         $articles = Article::with('users')
-        ->with('category')
-        ->with('comments')
-        ->get();
+            ->with('category')
+            ->with('comments')
+            ->get();
 
         // shows all notes from one user
         // $articles = Article::where('id', Auth::id())->paginate(5);
@@ -58,8 +58,18 @@ class ArticleController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
+
         $categories = Category::all();
-        return view('admin.articles.create')->with('categories', $categories);
+        $users = User::all();
+        $comments = Comment::all();
+
+        return view('admin.articles.create')->with('categories', $categories)->with('users', $users)
+            ->with('comments', $comments);
+
+        // $articles = Article::with('categories')
+        // ->with('users')
+        // ->with('comments');
+
     }
 
     /**
@@ -73,34 +83,42 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
         // before storing, the values below are checked
         $request->validate([
-           'title' => 'required|max:50',
-           'author' => 'required',
-           'category_id' => 'required',
-           'body_text' => 'required|max:500',
-           'article_image' => 'file|image'
+            'title' => 'required|max:50',
+            'author' => 'required',
+            'category_id' => 'required',
+            'body_text' => 'required|max:500',
+            'article_image' => 'file|image',
+            // 'user' => 'required',
+            // 'comment' => 'required',
+            // 'users' => ['required', 'exists:users,id'],
+            // 'comments' => ['required', 'exists:comments,id']
+
         ]);
 
-       $article_image = $request->file('article_image');
+        $article_image = $request->file('article_image');
         // getClientOriginalExtension() method returns the original file extension
         $extension = $article_image->getClientOriginalExtension();
         //this makes the image filename unique
         $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
-        
+
         $path = $article_image->storeAs('public/images', $filename);
         // saves data input from forum to db
-        Article::create([
+        $article = Article::create([
             // 'id' => Auth::id(),
             'article_image' => $filename,
             'title' => $request->title,
             'author' => $request->author,
             'category_id' => $request->category_id,
-            'body_text' => $request->body_text, 
+            'body_text' => $request->body_text,
             // 'updated_at' => now()
         ]);
-        
+
+        // adds data into the linking table
+        // $article->users()->attach($request->users);
+        // $article->comments()->attach($request->comments);
+
         // when you create the article, it redirects you back to the index. There you will see the newly made article
         return to_route('admin.articles.index');
     }
@@ -131,7 +149,7 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        
+
         return view('admin.articles.edit')->with('article', $article);
     }
 
@@ -159,7 +177,7 @@ class ArticleController extends Controller
         $article_image = $request->file('article_image');
         $extension = $article_image->getClientOriginalExtension();
         //unique filename
-        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.'. $extension;
+        $filename = date('Y-m-d-His') . '_' . $request->input('title') . '.' . $extension;
         // stores the file in /pubic/images, and names it $filename
         $path = $article_image->storeAs('public/images', $filename);
 
@@ -169,8 +187,19 @@ class ArticleController extends Controller
             'title' => $request->title,
             'author' => $request->author,
             'category_id' => $request->category_id,
-            'body_text' => $request->body_text, 
+            'body_text' => $request->body_text,
         ]);
+
+        // passes in the article_id and user_id, attaches user_id to article_id and saves comment
+        if ($request->comment) {
+            $article_id = $article->id;
+            $user->articles()->attach($article_id);
+            foreach (Comment::all() as $comment) {
+                $comment->comment = $request->comment;
+                $comment->save();
+            }
+            // $article->comments()->attach($request->comment, $user->id, $article->id);
+        }
 
         // after updating the article it returns to the original view of the article
         return to_route('admin.articles.show', $article)->with('success', 'Article updated successfully');
@@ -186,7 +215,7 @@ class ArticleController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        
+
         $article->delete();
 
         // confirmation message will popup when returning to index after successfully deleting article

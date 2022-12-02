@@ -26,6 +26,7 @@ class Article extends Model
             return $this->belongsToMany(User::class, 'comments');
         }
 
+        // article has many comments
         public function comments()
         {
             return $this->hasMany(Comment::class);
