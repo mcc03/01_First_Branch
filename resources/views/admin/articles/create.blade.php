@@ -59,9 +59,9 @@
                     {{-- article category field --}}
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select name="name">
+                        <select name="category_id">
                           @foreach ($categories as $category)
-                            <option value="{{$category->id}}" {{(old('name') == $category->id) ? "selected" : ""}}>
+                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
                               {{$category->name}}
                             </option>
                           @endforeach
