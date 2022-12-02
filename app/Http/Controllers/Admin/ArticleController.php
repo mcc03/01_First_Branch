@@ -39,6 +39,7 @@ class ArticleController extends Controller
         $articles = Article::with('users')
             ->with('category')
             ->with('comments')
+            // ->paginate(5)
             ->get();
 
         // shows all notes from one user
