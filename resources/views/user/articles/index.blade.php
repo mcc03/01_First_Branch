@@ -35,7 +35,7 @@
                 <p class="mt-2">
                     {{-- displaying the article information --}}
                    <strong>Author: {{ $article->author }} <br></strong> 
-                   <strong>Category: {{ $article->category_id }} <br></strong> 
+                   <strong>Category: {{ $article->category->name}} <br></strong> 
                     {{ Str::limit($article->body_text, 200) }}
                 </p>
            </div>
