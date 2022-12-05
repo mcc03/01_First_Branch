@@ -40,11 +40,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+
 Route::get('/home/categories', [App\Http\Controllers\HomeController::class, 'categoryIndex'])->name('home.category.index');
 
 // This will create all the routes for Article
 // routes will only be available when a user is logged in
 Route::resource('/admin/articles', AdminArticleController::class)->middleware(['auth'])->names('admin.articles');
+
 Route::resource('/user/articles', UserArticleController::class)->middleware(['auth'])->names('user.articles')->only(['index', 'show']);
 
 // This will create all the routes for Category functionality.

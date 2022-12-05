@@ -56,7 +56,7 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
         
-                    {{-- article category field --}}
+                    {{-- select article category field --}}
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select name="category_id">

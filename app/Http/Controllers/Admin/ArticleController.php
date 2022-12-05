@@ -64,6 +64,7 @@ class ArticleController extends Controller
         $users = User::all();
         $comments = Comment::all();
 
+        // return back to index with articles that have comments, categories and users associated with them
         return view('admin.articles.create')->with('categories', $categories)->with('users', $users)
             ->with('comments', $comments);
 
@@ -151,7 +152,14 @@ class ArticleController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        return view('admin.articles.edit')->with('article', $article);
+        $categories = Category::all();
+        $users = User::all();
+        $comments = Comment::all();
+
+        // return back to index with articles that have comments, categories and users associated with them
+        return view('admin.articles.edit')->with('article', $article)
+        ->with('categories', $categories)->with('users', $users)
+        ->with('comments', $comments);
     }
 
     /**
@@ -163,6 +171,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+
         $user = Auth::user();
         $user->authorizeRoles('admin');
 

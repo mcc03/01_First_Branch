@@ -59,30 +59,19 @@
                         <div class="text-red-600 text-sm">{{ $message }}</div>
                     @enderror
 
-                    {{-- <div class="forum-group">
+
+                    {{-- edit field for select category field --}}
+                    <div class="form-group">
                         <label for="category">Category</label>
-                        <select name="name">
-                            @foreach ($categories as $category)
-                            <option value="{{$category->id}}" {{(old('name') == $category->id) ? "selected" : ""}}>
+                        <select name="category_id">
+                          @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? "selected" : ""}}>
                               {{$category->name}}
                             </option>
-                            @endforeach
-                        </select>
-                     </div> --}}
+                          @endforeach
+                     </select>
 
-                    <x-textarea 
-                    enabled
-                    type="text"
-                    name="category_id" 
-                    rows="1" 
-                    placeholder="category" 
-                    class="w-full" 
-                    autocomplete="off"
-                    {{-- trying to add category dropdown into edit --}}
-                    :value="@old('category_id', $article)"></x-textarea> 
-                    @error('text')
-                        <div class="text-red-600 text-sm">{{ $message }}</div>
-                    @enderror
+ 
 
                     {{-- save changes button --}}
                     <button type="submit">Save Changes</button>
