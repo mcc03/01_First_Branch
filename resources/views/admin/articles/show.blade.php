@@ -54,18 +54,18 @@
 
         </p>
             {{-- display the user's name and their comment --}}
-            @foreach ($article->users as $user || $article->comments as $comment )
+            @foreach ($article->users as $user)
             <tr>
-                <td class="font-bold ">Comment by: <strong>{{$user->name }}</strong><br> {{ $comments->comment }}</td>
+                <td class="font-bold "><strong>{{$user->name }}:</strong><br> 
             </tr>
             @endforeach
 
 
-            {{-- @foreach ($article->comments as $comment)
+            @foreach ($article->comments as $comment)
             <tr>
                 <td>{{$comment->comment }}<br></td>
             </tr>
-            @endforeach --}}
+            @endforeach
     </div>
 </div>
 
