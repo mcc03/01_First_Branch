@@ -34,9 +34,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
+            // role authentication
             $user = Auth::user();
             $user->authorizeRoles('admin');
     
+            // returns admin create view with categories
             $categories = Category::all();
             return view('admin.categories.create')->with('categories', $categories);
     }
@@ -49,6 +51,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -76,9 +79,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
+        // if the role id does not match, user will not be able to access it
         if(!Auth::id()) {
            return abort(403);
          }
@@ -94,8 +99,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        // role authentication
         $user = Auth::user();
-        $user->authorizeRoles('admin');#
+        $user->authorizeRoles('admin');
 
         return view('admin.categories.edit')->with('category', $category);
     }
@@ -109,6 +115,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -134,6 +141,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
         

@@ -57,6 +57,7 @@
                     @enderror
         
                     {{-- select article category field --}}
+                    {{-- with the category id it can display the name of that particular category --}}
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select name="category_id">

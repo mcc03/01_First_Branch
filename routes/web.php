@@ -36,24 +36,25 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
+// route creation for home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
-
+// route creation for categories
 Route::get('/home/categories', [App\Http\Controllers\HomeController::class, 'categoryIndex'])->name('home.category.index');
 
 // This will create all the routes for Article
-// routes will only be available when a user is logged in
+// routes will only be available when an admin is logged in
 Route::resource('/admin/articles', AdminArticleController::class)->middleware(['auth'])->names('admin.articles');
 
+// route creation for user articles
 Route::resource('/user/articles', UserArticleController::class)->middleware(['auth'])->names('user.articles')->only(['index', 'show']);
 
 // This will create all the routes for Category functionality.
-// routes will only be available when a user is logged in
+// routes will only be available when an admin is logged in
 Route::resource('/admin/categories', AdminCategoryController::class)->middleware(['auth'])->names('admin.categories');
 
 // the ->only at the end of this statement says only create the index and show routes.
 Route::resource('/user/categories', UserCategoryController::class)->middleware(['auth'])->names('user.categories')->only(['index', 'show']);
+
 
 Route::post('/admin/{article}/comment', [App\Http\Controllers\Admin\CommentController::class, 'store'])->middleware(['auth'])->name('admin.comments.store');

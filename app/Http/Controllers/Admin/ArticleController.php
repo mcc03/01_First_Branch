@@ -29,7 +29,7 @@ class ArticleController extends Controller
         //shows all notes
         // $articles = Article::all();
 
-
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // limits number of articles shown per page to specified number
@@ -56,10 +56,11 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-
+        // gets all categories, users, comments
         $categories = Category::all();
         $users = User::all();
         $comments = Comment::all();
@@ -83,6 +84,7 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
         // before storing, the values below are checked
@@ -133,6 +135,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -149,9 +152,11 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
+        // gets all categories, users, comments
         $categories = Category::all();
         $users = User::all();
         $comments = Comment::all();
@@ -172,6 +177,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
 
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -200,7 +206,7 @@ class ArticleController extends Controller
             'body_text' => $request->body_text,
         ]);
 
-        // passes in the article_id and user_id, attaches user_id to article_id and saves comment
+        // passes in the article_id and user_id, attaches user_id to article_id and saves the comment
         if ($request->comment) {
             $article_id = $article->id;
             $user->articles()->attach($article_id);
@@ -223,6 +229,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        // role authentication
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
@@ -232,17 +239,3 @@ class ArticleController extends Controller
         return to_route('admin.articles.index')->with('success', 'Note deleted successfully');
     }
 }
-
-    
-
-        // dd($articles);
-
-        // foreach($articles as $article) {
-        //     echo $article->title. "<br>";
-        // }
-
-        // inserts data into DB
-        // $article = new Article();
-        // $article->title = "New title";
-        // $article->author= "New author";
-        // $article->save();

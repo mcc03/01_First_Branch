@@ -23,12 +23,6 @@ class CommentController extends Controller
             $comment->article_id = $article_id;
             $comment->comment = $request->comment;
             $comment->save();
-            // $user->articles()->attach($article_id);
-            // foreach (Comment::all() as $comment) {
-            //     $comment->comment = $request->comment;
-            //     $comment->save();
-            // }
-            // $article->comments()->attach($request->comment, $user->id, $article->id);
         }
 
         // after updating the article it returns to the original view of the article

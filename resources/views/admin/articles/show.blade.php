@@ -60,7 +60,6 @@
             </tr>
             @endforeach
 
-
             @foreach ($article->comments as $comment)
             <tr>
                 <td>{{$comment->comment }}<br></td>
